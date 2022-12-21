@@ -1,0 +1,24 @@
+# Packer
+output-virtualbox-iso/
+packer_cache/
+builds/
+jujubase*/
+osm-*/
+*.iso
+*.box
+*.ovf
+*.vmdk
+*.vdi
+virtualfloppy.vfd
+packer_cache
+packer.log
+.DS_Store
+/packer-*/
+*.variables.json
+/builds/
+vagrant_tests/.vagrant
+clouds.yaml
+clouds.yml
+openstack.rc
+openrc*
+*.pem

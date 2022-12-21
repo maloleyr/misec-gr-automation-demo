@@ -36,7 +36,6 @@
         "http_directory": "http",
         "iso_checksum": "sha256:aeb29db6cf1c049cd593351fd5c289c8e01de7e21771070853597dfc23aada28",
         "iso_urls": [
-          "iso/kali-linux-2021.4a-installer-amd64.iso",
           "https://cdimage.kali.org/kali-2022.4/kali-linux-2022.4-installer-amd64.iso"
         ],
         "shutdown_command": "echo 'kali'|sudo -S shutdown -P now",
@@ -50,13 +49,13 @@
             "modifyvm",
             "{{.Name}}",
             "--memory",
-            "16384"
+            "4096"
           ],
           [
             "modifyvm",
             "{{.Name}}",
             "--cpus",
-            "4"
+            "2"
           ],
           [
             "modifyvm",
@@ -91,16 +90,6 @@
       {
         "type": "file",
         "sources": [
-          "files/kali_ssh/id_rsa",
-          "files/kali_ssh/id_rsa.pub",
-          "files/kali_ssh/known_hosts",
-          "files/nessus/nessus_policy_Authenticated_-_OST_Scan.nessus",
-          "files/nessus/nessus_policy_HIPAA_Compliance.nessus",
-          "files/nessus/nessus_policy_OST_Default_Internal_Scan.nessus",
-          "files/nessus/nessus_policy_OST_External_Scan_-_No_Ping.nessus",
-          "files/nessus/nessus_policy_PCI_DSS_11_2_1_Internal_Scan.nessus",
-          "files/nessus/nessus-config",
-          "files/nessus/OST-Logo-Color-RGB-128px.png",
           "files/kali-readme.txt"
         ],
         "destination": "/home/kali/"
@@ -111,25 +100,16 @@
         "scripts": [
           "scripts/kali-install-updates.sh",
           "scripts/kali-install-zaproxy.sh",
-          "scripts/kali-install-nessus.sh",
-          "scripts/kali-setup-ssh-keys.sh",
-          "scripts/kali-configure-nessus.sh",
           "scripts/kali-install-remmina.sh",
           "scripts/kali-install-villain.sh",
-          "scripts/kali-configure-usergroup.sh"
-        ],
-        "type": "shell"
-      },
-      {
-        "expect_disconnect": true,
-        "inline": [
-          "git clone git@bitbucket.org:rmaloley/ossat.git"
+          "scripts/kali-configure-usergroup.sh",
+          "scripts/kali-cleanup.sh"
         ],
         "type": "shell"
       }
     ],
     "variables": {
       "password": "kali",
-      "username": "misec"
+      "username": "kali"
     }
   }
