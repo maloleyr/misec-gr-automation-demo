@@ -95,6 +95,13 @@
         "destination": "/home/kali/"
       },
       {
+        "expect_disconnect": true,
+        "scripts": [
+          "scripts/kali-install-villain.sh"
+        ],
+        "type": "shell"
+      },
+      {
         "execute_command": "echo 'kali' | {{.Vars}} sudo -S -H -E bash '{{.Path}}'",
         "expect_disconnect": true,
         "scripts": [
