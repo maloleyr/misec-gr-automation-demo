@@ -108,7 +108,6 @@
           "scripts/kali-install-updates.sh",
           "scripts/kali-install-zaproxy.sh",
           "scripts/kali-install-remmina.sh",
-          "scripts/kali-install-villain.sh",
           "scripts/kali-configure-usergroup.sh",
           "scripts/kali-gunzip-rockyou.sh",
           "scripts/kali-cleanup.sh"
