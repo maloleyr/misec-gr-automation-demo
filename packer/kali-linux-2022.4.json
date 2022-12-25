@@ -49,7 +49,7 @@
             "modifyvm",
             "{{.Name}}",
             "--memory",
-            "4096"
+            "2048"
           ],
           [
             "modifyvm",
@@ -95,7 +95,7 @@
         "destination": "/home/kali/"
       },
       {
-        "execute_command": "echo 'kali' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+        "execute_command": "echo 'kali' | {{.Vars}} sudo -S -H -E bash '{{.Path}}'",
         "expect_disconnect": true,
         "scripts": [
           "scripts/kali-install-updates.sh",
@@ -103,6 +103,7 @@
           "scripts/kali-install-remmina.sh",
           "scripts/kali-install-villain.sh",
           "scripts/kali-configure-usergroup.sh",
+          "scripts/kali-gunzip-rockyou.sh",
           "scripts/kali-cleanup.sh"
         ],
         "type": "shell"
