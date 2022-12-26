@@ -97,7 +97,8 @@
       {
         "expect_disconnect": true,
         "scripts": [
-          "scripts/kali-install-villain.sh"
+          "scripts/kali-install-villain.sh",
+          "scripts/kali-install-misec-demo.sh"
         ],
         "type": "shell"
       },
