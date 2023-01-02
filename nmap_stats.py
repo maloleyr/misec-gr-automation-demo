@@ -21,7 +21,9 @@ def parse_nmap_file(report, verbose):
     if verbose:
         print(f"Report Name: {report_name}")
     list_hosts = [] # A place to hold the hosts that we discover.
+    list_host_ports = [] # Placeholder for our discovered ports that match what we are looking for.
     for host in xml_root.findall("host"):
+        list_ports = []
         if verbose:
             print(f"Host: {host}")
         ipv4 = "" # Set a blank ipv4
@@ -31,10 +33,22 @@ def parse_nmap_file(report, verbose):
                 print(ip.get("addr"))
             if ip.get("addrtype") == "ipv4":
                 ipv4 = ip.get("addr")
+                # Go through all identified ports and see if they match what we are looking for.
+                for ports in host.findall("ports"):
+                    if verbose:
+                        print(ports)
+                    for port in ports:
+                        portid = port.get("portid")
+                        if verbose:
+                            print(f"Port: {portid}")
+                        if port:
+                            list_ports.append(portid)
         list_hosts.append(ipv4)
+        list_host_ports.append([ipv4, list_ports])
+
     if verbose:
         print(f"list_hosts:\n{list_hosts}")
-    return report_name, list_hosts
+    return report_name, list_hosts, list_host_ports
 
 def main(directory, verbose):
     """Main Program"""
@@ -51,12 +65,16 @@ def main(directory, verbose):
         return
 
     for report in list_nmap_files:
-        report_name, list_hosts = parse_nmap_file(report, verbose)
+        report_name, list_hosts, list_host_ports = parse_nmap_file(report, verbose)
         print("=====================================================================")
-        print(f"Report Name: {report_name}\t\tTotal Hosts: {len(list_hosts)}")
+        print(f"Report Name: {report_name}\t\tTotal Hosts (open ports): {len(list_hosts)}")
         print(f"Hosts:")
         for host in list_hosts:
             print(f"- {host}")
+            for port in list_host_ports:
+                if port[0] == host:
+                    for p in port[1]:
+                        print(f"\t{p}")
         print("=====================================================================\n\n")
     
 
