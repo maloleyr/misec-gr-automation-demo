@@ -40,9 +40,9 @@ def main(verbose, subnet, file):
 
     # Run our NMAP process and report.
     if subnet: # Run this when given a subnet.
-        subprocess.call(["nmap", "-A", "-v", "--exclude-ports", "T:9100", "--script", "smb-os-discovery,banner,vuln", "-oX", report, subnet])
+        subprocess.call(["nmap", "-v", "--open", "--exclude-ports", "T:9100", "--script", "smb-os-discovery,banner", "-oX", report, subnet])
     if file:
-        subprocess.call(["nmap", "-A", "-v", "--exclude-ports", "T:9100", "--script", "smb-os-discovery,banner,vuln", "-oX", report, "-iL", file])
+        subprocess.call(["nmap", "-v", "--open", "--exclude-ports", "T:9100", "--script", "smb-os-discovery,banner", "-oX", report, "-iL", file])
     if verbose:
         if subnet:
             print(f"An XML report for {subnet} has been created: {report}")
